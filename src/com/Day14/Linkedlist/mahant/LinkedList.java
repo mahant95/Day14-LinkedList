@@ -1,5 +1,6 @@
 package com.Day14.Linkedlist.mahant;
 
+
 import java.util.Scanner;
 
 public class LinkedList {
@@ -98,6 +99,25 @@ public class LinkedList {
 			temp.ref = null;
 		}
 	}
+	
+	public Object searchElement(Object input)
+	{
+		Node temp = head;
+		int index =0;
+		while(temp != null)
+		{
+			index++;
+			if(temp.data == input)
+			{
+				
+				String res=  temp.data+" found at index "+index;
+				
+				return res;
+			}	
+			temp = temp.ref;
+		}
+		return null;
+	}
 	public static void main(String[] args) {
 		LinkedList list = new LinkedList();
 		System.out.println("Welcome to LinkedList program");
@@ -106,15 +126,26 @@ public class LinkedList {
 		list.display();
 		list.addLast(70);
 		list.display();
+		list.addFirst(126);
+		list.display();
+		list.addLast(99);
+		list.display();
+		list.addFirst(236);
+		list.display();
+		list.addLast(10);
+		list.display();
 		//System.out.println("Enter position after which you want to add node: ");
 		System.out.println("Enter position at which you want to add node: ");
 		int position = sc.nextInt();
 		list.addAtPosition(30,position);
 		list.display();
-//		list.deleteFirst();
-//		list.display();
+		list.deleteFirst();
+		list.display();
 		list.deleteLast();
 		list.display();
+		System.out.println("Enter element to search in linked list: ");
+		int input = sc.nextInt();
+		System.out.println(list.searchElement(input));
 	}
 	
 }
