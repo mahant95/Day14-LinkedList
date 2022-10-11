@@ -1,4 +1,6 @@
 package com.Day14.Linkedlist.mahant;
+
+
 import java.util.Scanner;
 
 public class LinkedList {
@@ -75,6 +77,10 @@ public class LinkedList {
 		}
 		
 	}
+	public void deleteFirst()
+	{
+		head = head.ref;
+	}
 	public static void main(String[] args) {
 		LinkedList list = new LinkedList();
 		System.out.println("Welcome to LinkedList program");
@@ -87,6 +93,11 @@ public class LinkedList {
 		System.out.println("Enter position at which you want to add node: ");
 		int position = sc.nextInt();
 		list.addAtPosition(30,position);
+		list.display();
+		
+		list.deleteFirst();
+		list.display();
+		list.deleteFirst();
 		list.display();
 		
 	}
