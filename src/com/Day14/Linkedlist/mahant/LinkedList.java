@@ -1,4 +1,5 @@
 package com.Day14.Linkedlist.mahant;
+import java.util.Scanner;
 
 public class LinkedList {
 	Node head;
@@ -34,6 +35,33 @@ public class LinkedList {
 			temp.ref = newNode;
 		}
 	}
+	public void addAtPosition(Object data, int position)
+	{
+		int index = 0;
+		Node newNode = new Node(data);
+		Node left = head;
+		Node right = left.ref;
+		
+		/*
+		 * position-1 is used because the value of index
+		 * will be incremented and stops before the position at which user
+		 * wants to add the node
+		 * */
+		while(index < (position-1))
+		{
+			
+			left = left.ref;
+			right = right.ref;
+			index++;
+		}
+		/*
+		 * if we do index < position is used because the value of index
+		 * will be incremented and will point to the index user has entered
+		 * and the new element will be added after the entered position
+		 */ 
+		newNode.ref = right;
+		left.ref = newNode;
+	}
 	public void display()
 	{
 		Node temp = head;
@@ -50,19 +78,15 @@ public class LinkedList {
 	public static void main(String[] args) {
 		LinkedList list = new LinkedList();
 		System.out.println("Welcome to LinkedList program");
-		System.out.println("Add nodes at first");
-		list.addFirst(70);
-		list.display();
-		list.addFirst(30);
-		list.display();
+		Scanner sc = new Scanner(System.in);
 		list.addFirst(56);
 		list.display();
-		System.out.println("Add nodes at last");
-		list.addLast(56);
-		list.display();
-		list.addLast(30);
-		list.display();
 		list.addLast(70);
+		list.display();
+		//System.out.println("Enter position after which you want to add node: ");
+		System.out.println("Enter position at which you want to add node: ");
+		int position = sc.nextInt();
+		list.addAtPosition(30,position);
 		list.display();
 		
 	}
