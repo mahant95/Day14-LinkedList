@@ -61,16 +61,18 @@ public class LinkedList {
 		left.ref = newNode;
 	}
 
-	public void display() {
+	public Object display() {
+		int values = 0;
 		Node temp = head;
 		while (temp != null) {
+			values++;
 			if (temp.ref != null)
 				System.out.print(temp.data + " > ");
 			else
 				System.out.println(temp.data);
 			temp = temp.ref;
 		}
-
+		return "The size of list: " + values;
 	}
 
 	public void deleteFirst() {
@@ -105,23 +107,26 @@ public class LinkedList {
 		}
 		return null;
 	}
-	
-	public void insertElement(Object input , Object value)
-	{
+
+	public void insertElement(Object input, Object value) {
 		Node newNode = new Node(value);
 		Node temp = head;
-		
+		/*
+		 * first while loop is to find the element after which user wants to add new
+		 * element
+		 */
 		int index = 0;
-		while(temp.data != input)
-		{
+		while (temp.data != input) {
 			index++;
 			temp = temp.ref;
 		}
+		/*
+		 * second while loop is to add the value i.e new node to the linked list
+		 */
 		Node left = head;
 		Node right = left.ref;
-		int index1 =0;
-		while(index1 < index)
-		{
+		int index1 = 0;
+		while (index1 < index) {
 			index1++;
 			left = left.ref;
 			right = right.ref;
@@ -129,28 +134,34 @@ public class LinkedList {
 		newNode.ref = right;
 		left.ref = newNode;
 	}
+
+	public void deleteAtPosition(Object data) {
+		int index = 0;
+		Node left = head;
+		Node right = left.ref;
+		while (right.data != data) {
+			left = left.ref;
+			right = right.ref;
+			index++;
+		}
+		left.ref = right.ref;
+
+	}
+
 	public static void main(String[] args) {
 		LinkedList list = new LinkedList();
 		System.out.println("Welcome to LinkedList program");
 		Scanner sc = new Scanner(System.in);
 		list.addFirst(56);
-		list.display();
+		list.addLast(30);
+		list.addLast(40);
 		list.addLast(70);
 		list.display();
-		// System.out.println("Enter position after which you want to add node: ");
-		System.out.println("Enter position at which you want to add node: ");
-		int position = sc.nextInt();
-		list.addAtPosition(30, position);
-		list.display();
-		System.out.println("Enter element to search in linked list: ");
-		int input = sc.nextInt();
-		System.out.println(list.searchElement(input));
-		System.out.println("Enter element after which you want to add: ");
-		int element = sc.nextInt();
-		System.out.println("Enter value to add: ");
-		int value = sc.nextInt();
-		list.insertElement(element,value);
-		list.display();
+		
+		
+		list.deleteAtPosition(40);
+		System.out.println(list.display());
+
 	}
 
 }
